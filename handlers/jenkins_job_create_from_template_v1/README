@@ -1,0 +1,32 @@
+== Jenkins Job Create From Template
+Creates a new Jenkins job based on a provided template project on the same Jenkins server.
+
+=== Parameters
+[Template Job]
+  The name of the template job on the Jenkins server.
+[Name]
+  the name of the new Jenkins job.
+[Template Substitutions]
+  A JSON object mapped with the text to be substituted as the key and the text to use as the values
+  - ie. {'GIT_LOCATION': 'http://github.com/user/repository'}
+
+=== Sample Configuration
+Template Job:              Test Projects - Template
+Name:                      Test Projects - ACME
+Template Substitutions:    {"COMPANY_NAME": "Acme","COMPANY_URL": "https://acme.com"}
+
+=== Results
+[Job URL]
+  Returns the URL of the newly created job if successfully created
+
+=== Detailed Description
+Creates a new Jenkins job based on a provided template project on the same Jenkins server. To begin,
+an XML representation of the template project is retrieved. The template substitutions are then
+looped through and any text matching the substituion keys in the XML is replaced by the
+corresponding value in the template substitutions map (NOTE: Because the replacement is run over
+the whole config.xml file and not just the user input values, make sure to use strings that aren't
+likely to be used in the system generation of the Jenkins XML file). Any Jenkins POST jobs need to
+have a crumb to make a successful request, so before creation can happen a request to the server to
+retrieve a Jenkins-Crumb needs to happen. Once that crumb is retrieved, it can be passed along as a
+header and the job can be created with the modified config.xml. If the job was successfully created,
+an empty result set will be returned.

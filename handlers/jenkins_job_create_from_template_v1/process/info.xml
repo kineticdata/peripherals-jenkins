@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taskInfo version="1.0">
+  <info name="jenkins_location" description="URL location of the Jenkins installation">http://jenkins.company.com:8080</info>
+  <info name="username" description="Jenkins username"></info>
+  <info name="password" type="encrypted" description="Jenkins password"></info>
+  <info name="enable_debug_logging" description="'Yes' to enable debug logging.">No</info>
+</taskInfo>

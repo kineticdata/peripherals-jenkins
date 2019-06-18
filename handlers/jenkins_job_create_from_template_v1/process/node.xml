@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taskDefinition id="jenkins_job_create_from_template" name="Jenkins Job Create From Template" schema_version="1.0" version="1">
+    <author>support@kineticdata.com</author>
+    <description>Creates a new Jenkins job based on a provided template project on the same Jenkins server.</description>
+    <helpurl></helpurl>
+    <visible>true</visible>
+    <deferrable>false</deferrable>
+    <parameters>
+      <parameter id="template_job" label="Template Job" required="true"
+        tooltip="The name of the template job on the Jenkins server."/>
+      <parameter id="name" label="Name" required="true"
+        tooltip="The name of the new Jenkins job."/>
+      <parameter id="template_substitutions" label="Template Substitutions" required="true"
+        tooltip="A JSON object mapped with the text to be substituted as the key and the text to use as the values - ie. {'GIT_LOCATION': 'http://github.com/user/repository'}"/>
+    </parameters>
+    <handler name="jenkins_job_create_from_template" version="1">
+        <infos>
+          <info name="jenkins_location">&lt;%= @info['jenkins_location'] %&gt;</info>
+          <info name="username">&lt;%= @info['username'] %&gt;</info>
+          <info name="password">&lt;%= @info['password'] %&gt;</info>
+          <info name="enable_debug_logging">&lt;%= @info['enable_debug_logging'] %&gt;</info>
+        </infos>
+        <parameters>
+          <parameter name="template_job">&lt;%= @parameters['template_job'] %&gt;</parameter>
+          <parameter name="name">&lt;%= @parameters['name'] %&gt;</parameter>
+          <parameter name="template_substitutions">&lt;%= @parameters['template_substitutions'] %&gt;</parameter>
+        </parameters>
+    </handler>
+    <results>
+      <result name="Job URL"/>
+    </results>
+</taskDefinition>
