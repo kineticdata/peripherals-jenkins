@@ -1,1 +1,8 @@
---- {}
+---
+repo-name: peripherals-jenkins
+categories:
+  - devops
+display-name: Jenkins
+manufacturer: Jenkins
+product: Jenkins
+description: Jenkins is a free and open source automation server written in Java. Jenkins helps to automate the non-human part of the software development process, with continuous integration and facilitating technical aspects of continuous delivery.
